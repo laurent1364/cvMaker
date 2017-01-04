@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CV Maker - User details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <a class="btn btn-primary" href="/users">Users</a>
+    >
+    <a class="btn btn-primary" th:href="${'/user/' + user.user.id }">UserDetails</a>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>User Details : <span class="form-control-static" th:text="${user.user.userName}">User Name</span></h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Education</h3>
+            <table class="table table-striped">
+
+                <tr>
+                    <th>School</th>
+                    <th>School Url</th>
+                    <th colspan="2"><a th:href="'/user/' + ${user.id} + '/education/new'">New Education</a></th>
+                </tr>
+                <tr th:each="education : ${educations}" th:if="${not #lists.isEmpty(educations)}">
+                    <td th:text="${education.school}"></td>
+                    <td th:text="${education.schoolUrl}"></td>
+                    <td><a th:href="${'/education/edit/' + education.id}">Edit</a> </td>
+                    <td><a th:href="${'/education/delete/' + education.id}">Delete</a> </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+    </div>
+</div>
+
+</body>
+</html>

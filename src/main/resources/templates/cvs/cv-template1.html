@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd"-->
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../static/css/cvs/cv-template.css" data-th-href="@{/css/cvs/cv-template.css}"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../static/css/fonts-css.css" data-th-href="@{/css/fonts-css.css}"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../static/css/cvs/font-awesome-4.7.0/css/font-awesome.min.css"
+          data-th-href="@{/css/cvs/font-awesome-4.7.0/css/font-awesome.min.css}"/>
+
+</head>
+<body style="height: 100%;">
+
+<div class="cv-container">
+    <div class="left-container container">
+        <div class="user-info">
+            <div class="user-container">
+                <div class="user-name">
+                    <span th:text="${curriculum.userDetails.user.firstName}">Laurent</span><br/>
+                    <span th:text="${curriculum.userDetails.user.lastName}" class="upercase">FAIVRE</span>
+                </div>
+                <div>
+                    <table cellpadding="6">
+                        <tbody>
+                        <tr>
+                            <td class="user-info-icon">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                <span class="user-email" th:text="${curriculum.userDetails.user.email}">laurent.faivre@centrale-marsielle.fr</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user-info-icon">
+                                <i class="fa-1-5x fa fa-mobile-phone" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                <span th:text="${curriculum.userDetails.user.phoneNumber}">(+01)01234567897</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user-info-icon">
+                                <i class="fa-1-2x fa fa-home" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                <span th:text="${curriculum.userDetails.user.address}">6 rue Léon Gozlan</span><br/>
+                                <span th:text="${curriculum.userDetails.user.addressComplement}">Appt 601</span><br/>
+                                <span th:text="${curriculum.userDetails.user.zipCode}">13003</span>
+                                <span class="upercase" th:text="${curriculum.userDetails.user.city}">MARSEILLE</span><br/>
+                                <span class="upercase" th:text="${curriculum.userDetails.user.country}">France</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="skills-container">
+                <div class="domain-container"
+                     th:each="domain : ${curriculum.domains}"
+                     th:if="${not #lists.isEmpty(curriculum.domains)} AND ${domain.domainType} == 'STAR'">
+                    <div class="elm-header">
+                        <h4><i class="fa" th:class="${domain.iconName}" aria-hidden="true"></i> <span th:text="${domain.name}">Web Developpement</span></h4>
+                    </div>
+                    <div class="elm-content">
+                        <table>
+                            <tbody>
+                            <tr th:each="skill : ${domain.skills}">
+                                <td>
+                                    <span th:text="${skill.title}"></span>
+                                </td>
+                                <td>
+                                    <div class="star-ratings-css">
+                                        <div th:class="'star-ratings-css-top skill-rate-' + ${skill.rank}">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <div class="star-ratings-css-bottom">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="right-container container">
+        <div class="elm-container">
+            <div class="elm-header">
+                <h2><i class="fa fa-user" aria-hidden="true"></i> <span>Personal profile</span></h2>
+            </div>
+            <div class="elm-content elm-justify" th:text="${curriculum.introduction}">
+                This is my contentThis is my contentThis is my contentThis is my contentThis is my contentThis is my
+                contentThis is my contentThis is my contentThis is my contentThis is my contentThis is my contentThis is
+                my contentThis is my contentThis is my contentThis is my contentThis is my contentThis is my contentThis
+                is my contentThis is my contentThis is my contentThis is my contentThis is my contentThis is my
+                contentThis is my content
+            </div>
+        </div>
+
+        <div class="elm-container" th:if="${skillDescription} == true">
+            <div class="elm-header">
+                <h2><i class="fa fa-cogs" aria-hidden="true"></i> <span>Skills</span></h2>
+            </div>
+            <div class="elm-content elm-justify">
+                <div class="experience-container"
+                     th:class="${iterStat.index == iterStat.size-1} ? 'experience-container container-without-border' : 'experience-container'"
+                     th:each="domain,iterStat : ${curriculum.domains}"
+                     th:if="${not #lists.isEmpty(curriculum.domains)} AND ${domain.domainType} == 'DESCRIPTION'">
+
+                    <div class="domain-header">
+                        <h3><i class="fa" th:class="${domain.iconName}" aria-hidden="true"></i> <span th:text="${domain.name}">Web Developpement</span></h3>
+                    </div>
+
+                    <div class="domain-content">
+                        <ul>
+                            <li th:each="skill : ${domain.skills}">
+                                <span th:text="${skill.title}" ></span>
+                                <span>:</span>
+                                <span th:text="${skill.description}" class="skill-description"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-container container-without-border"
+                     th:each="domain : ${curriculum.domains}"
+                     th:if="${not #lists.isEmpty(curriculum.domains)} AND ${domain.domainType} == 'LANGUE'">
+
+                    <div class="domain-header">
+                        <h3><i class="fa fa-globe" aria-hidden="true"></i> <span>Language</span></h3>
+                    </div>
+
+                    <div class="domain-content">
+                        <table>
+                            <tbody>
+                            <tr th:each="skill : ${domain.skills}">
+                                <td class="skill-logo">
+                                    <img class="flag-logo" th:src="@{/img/language/{url}(url=${skill.skillImg})}" src="../../static/img/Testing.jpg"/>
+                                </td>
+                                <td>
+                                    <span th:text="${skill.title}"></span>
+                                </td>
+                                <td>
+                                    <span th:text="${skill.description}" class="skill-description"></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="elm-container">
+            <div class="elm-header">
+                <h2><i class="fa fa-briefcase" aria-hidden="true"></i> <span>Work experiences</span></h2>
+            </div>
+            <div class="elm-content elm-justify">
+                <div class="experience-container"
+                     th:class="${iterStat.index == iterStat.size-1} ? 'experience-container container-without-border' : 'experience-container'"
+                     th:each="experience,iterStat : ${curriculum.experiences}"
+                     th:if="${not #lists.isEmpty(curriculum.experiences)}">
+                    <div class="experience-date italic">
+                        <span th:text="${#calendars.format(experience.startDate, 'MM/yyyy')}">12/12/12</span><br/>
+                        <span th:text="${#calendars.format(experience.endDate, 'MM/yyyy')}" th:if="${experience.endDate != ''}">13/13/13</span>
+                        <span th:if="${experience.endDate == ''}">Current</span>
+                    </div>
+                    <div class="experience-title">
+                        <h3 th:text="${experience.title}">This is the title of my exprerience</h3>
+                        <span th:text="${experience.company}" class="italic">Company</span>
+                        <span>,</span>
+                        <span th:text="${experience.location}" class="italic">Location</span>
+                    </div>
+                    <div class="experience-logo">
+                        <img th:src="@{/img/company/{url}(url=${experience.urlCompany})}" src="../../static/img/Testing.jpg"/>
+                    </div>
+                    <div class="experience-content">
+                        <span th:text="${experience.responsibilities}">This is the descirption of my experience</span>
+                        <ul th:if="${experience.achievement1 != ''}">
+                            <li th:text="${experience.achievement1}">Achievement 1</li>
+                            <li th:text="${experience.achievement2}" th:if="${experience.achievement2 != ''}">Achievement 2</li>
+                            <li th:text="${experience.achievement3}" th:if="${experience.achievement3 != ''}">Achievement 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="elm-container">
+            <div class="elm-header">
+                <h2><i class="fa fa-graduation-cap" aria-hidden="true"></i> <span>Educations</span></h2>
+            </div>
+            <div class="elm-content elm-justify">
+                <div class="experience-container"
+                     th:class="${iterStat.index == iterStat.size-1} ? 'experience-container container-without-border' : 'experience-container'"
+                     th:each="education,iterStat : ${curriculum.educations}"
+                     th:if="${not #lists.isEmpty(curriculum.educations)}">
+                    <div class="experience-date italic">
+                        <span th:text="${#calendars.format(education.startDate, 'MM/yyyy')}">12/12/12</span><br/>
+                        <span th:text="${#calendars.format(education.endDate, 'MM/yyyy')}" th:if="${education.endDate != ''}">13/13/13</span>
+                        <span th:if="${education.endDate == ''}">Current</span>
+                    </div>
+                    <div class="experience-title">
+                        <h3 th:text="${education.title}">This is the title of my education</h3>
+                        <span th:text="${education.school}" class="italic">School</span>
+                        <span>,</span>
+                        <span th:text="${education.location}" class="italic">Location</span>
+                    </div>
+                    <div class="experience-logo">
+                        <img th:src="@{/img/school/{url}(url=${education.schoolUrl})}" src="../../static/img/Testing.jpg"/>
+                    </div>
+                    <div class="experience-content">
+                        <span th:text="${education.description}">This is the descirption of my education</span>
+                        <ul th:if="${education.achievement1 != null}">
+                            <li th:text="${education.achievement1}">Achievement 1</li>
+                            <li th:text="${education.achievement2}" th:if="${education.achievement2 != null}">Achievement 2</li>
+                            <li th:text="${education.achievement3}" th:if="${education.achievement3 != null}">Achievement 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elm-container">
+            <div class="elm-header">
+                <h2><i class="fa fa-camera-retro" aria-hidden="true"></i> <span>Hobbies &amp; Interests</span></h2>
+            </div>
+            <div class="elm-content elm-justify" th:text="${curriculum.interests}">
+                This is my contentThis is my contentThis is my contentThis is my contentThis is my contentThis is my
+                contentThis is my contentThis is my contentThis is my contentThis is my contentThis is my contentThis is
+                my contentThis is my contentThis is my contentThis is my contentThis is my contentThis is my contentThis
+                is my contentThis is my contentThis is my contentThis is my contentThis is my contentThis is my
+                contentThis is my content
+            </div>
+        </div>
+
+        <div class="elm-container">
+            <div class="elm-header">
+                <h2><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span>Referees</span></h2>
+            </div>
+            <div class="elm-content elm-justify">
+                <div class="referee-container" th:each="referee : ${curriculum.referees}" th:if="${not #lists.isEmpty(curriculum.referees)}">
+                    <p class="referee-info">
+                        <span class="referee-name" th:text="${referee.fullName}">Yorick Ser</span>
+                        <span th:text="${referee.function}">Founder &amp; CEO</span>
+                        <span th:text="${referee.company}">in Campus Groups</span>
+                    </p>
+                    <table class="referee-table">
+                        <tbody>
+                        <tr>
+                            <td class="user-info-icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></td>
+                            <td th:text="${referee.email}">y.s@gmail.com</td>
+                        </tr>
+                        <tr th:if="${referee.phoneNumber != null}">
+                            <td class="user-info-icon"><i class="fa fa-1-5x fa-mobile-phone" aria-hidden="true"></i></td>
+                            <td th:text="${referee.phoneNumber}">1234567890</td>
+                        </tr>
+                        <tr th:if="${referee.website != null}">
+                            <td class="user-info-icon"><i class="fa fa-globe" aria-hidden="true"></i></td>
+                            <td th:text="${referee.website}">www.campusgroups.com</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

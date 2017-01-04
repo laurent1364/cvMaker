@@ -1,0 +1,24 @@
+@font-face {
+    font-family: alex-brush;
+    src: url(../fonts/alex-brush/AlexBrush-Regular.ttf);
+}
+
+@font-face {
+    font-family: great-vibes;
+    src: url(../fonts/great-vibes/GreatVibes-Regular.otf);
+}
+
+@font-face {
+    font-family: open-sans;
+    src: url(../fonts/open-sans/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: quicksand;
+    src: url(../fonts/quicksand/Quicksand-Regular.otf);
+}
+
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/roboto/Roboto-Regular.ttf);
+}

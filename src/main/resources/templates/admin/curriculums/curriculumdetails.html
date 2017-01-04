@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CV Maker - Curriculum details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../static/css/cvs/font-awesome-4.7.0/css/font-awesome.min.css"
+          data-th-href="@{/css/cvs/font-awesome-4.7.0/css/font-awesome.min.css}"/>
+
+    <link rel="stylesheet" type="text/css" media="all"
+      href="../../static/css/spring-core.css" data-th-href="@{/css/spring-core.css}" />
+</head>
+<body>
+<div class="container">
+    <a class="btn btn-primary" href="/users">Users</a>
+    >
+    <a class="btn btn-primary" th:href="${'/user/' + curriculum.userDetails.user.id }">UserDetails</a>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Curriculum Details : <span class="form-control-static" th:text="${curriculum.title}">User Name</span></h2>
+        </div>
+    </div>
+    <a class="btn btn-success" th:href="${'/curriculum/preview/' + curriculum.id }">Preview CV</a>
+    <a class="btn btn-danger" th:href="${'/curriculum/generate/' + curriculum.id }">Generate PDF</a>
+    <div class="row">
+        <div class="col-sm-8">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Introduction:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${curriculum.introduction}">Introduction</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Interests:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${curriculum.interests}">Interests</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Experience</h3>
+            <table class="table table-striped">
+
+                <tr>
+                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Select</th>
+                </tr>
+                <tr th:each="experience : ${curriculum.experiences}" th:if="${not #lists.isEmpty(curriculum.experiences)}">
+                    <td th:text="${experience.title}"></td>
+                    <td th:text="${experience.company}"></td>
+                    <td><a th:href="${'/curriculum/' + curriculum.id + '/experience/' + experience.id + '/remove'}">remove</a> </td>
+                </tr>
+                <tr th:each="experience : ${user.experiences}" th:if="${not #lists.isEmpty(user.experiences)}">
+                    <td th:text="${experience.title}"></td>
+                    <td th:text="${experience.company}"></td>
+                    <td><a th:href="${'/curriculum/' + curriculum.id + '/experience/' + experience.id + '/add'}">add</a> </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Education</h3>
+            <table class="table table-striped">
+
+                <tr>
+                    <th>Title</th>
+                    <th>School</th>
+                    <th>Select</th>
+                </tr>
+                <tr th:each="education : ${curriculum.educations}" th:if="${not #lists.isEmpty(curriculum.educations)}">
+                    <td th:text="${education.title}"></td>
+                    <td th:text="${education.school}"></td>
+                    <td><a th:href="${'/curriculum/' + curriculum.id + '/education/' + education.id + '/remove'}">remove</a> </td>
+                </tr>
+                <tr th:each="education : ${user.educations}" th:if="${not #lists.isEmpty(user.educations)}">
+                    <td th:text="${education.title}"></td>
+                    <td th:text="${education.school}"></td>
+                    <td><a th:href="${'/curriculum/' + curriculum.id + '/education/' + education.id + '/add'}">add</a> </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Domains</h3>
+            <table class="table table-striped">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Icone</th>
+                    <th>Select</th>
+                </tr>
+                <tr th:each="domain : ${curriculum.domains}" th:if="${not #lists.isEmpty(curriculum.domains)}">
+                    <td th:text="${domain.name}"></td>
+                    <td><i th:class="${domain.iconName}" aria-hidden="true"></i></td>
+                    <td><a th:href="${'/curriculum/' + curriculum.id + '/domain/' + domain.id + '/remove'}">remove</a> </td>
+                </tr>
+                <tr th:each="domain : ${user.domains}" th:if="${not #lists.isEmpty(user.domains)}">
+                    <td th:text="${domain.name}"></td>
+                    <td><i th:class="${domain.iconName}" aria-hidden="true"></i></td>
+                    <td><a th:href="${'/curriculum/' + curriculum.id + '/domain/' + domain.id + '/add'}">add</a> </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Referees</h3>
+            <table class="table table-striped">
+
+                <tr>
+                    <th>Full Name</th>
+                    <th>Company</th>
+                    <th>Select</th>
+                </tr>
+                <tr th:each="referee : ${curriculum.referees}" th:if="${not #lists.isEmpty(curriculum.referees)}">
+                    <td th:text="${referee.fullName}"></td>
+                    <td th:text="${referee.company}"></td>
+                    <td><a th:href="${'/curriculum/' + curriculum.id + '/referee/' + referee.id + '/remove'}">remove</a> </td>
+                </tr>
+                <tr th:each="referee : ${user.referees}" th:if="${not #lists.isEmpty(user.referees)}">
+                    <td th:text="${referee.fullName}"></td>
+                    <td th:text="${referee.company}"></td>
+                    <td><a th:href="${'/curriculum/' + curriculum.id + '/referee/' + referee.id + '/add'}">add</a> </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+    </div>
+</div>
+
+</body>
+</html>

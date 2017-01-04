@@ -1,0 +1,241 @@
+body{
+    /*width: 21cm !important;
+    border-right: 1px solid black !important;*/
+    font-family: roboto;
+}
+
+.cv-container{
+    width: 100% !important;
+    padding-top: 5pt !important;
+}
+
+.left-container{
+    width: 28%;
+    position: absolute;
+}
+
+.right-container{
+    margin-left: 31%;
+}
+
+.container{
+    padding: 0 7pt;
+}
+
+
+/*-------------USER INFORMATION--------------*/
+
+.user-info{
+    background-color: beige;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+.user-container{
+    /*color: white;*/
+}
+
+.user-name{
+    font-size: 20pt;
+    text-align: center;
+    padding: 10pt 0 20pt 0;
+}
+
+
+
+.user-info-icon{
+    text-align: center;
+}
+
+.fa-1-5x{
+    font-size: 1.5em!important;
+}
+
+.fa-1-2x{
+    font-size: 1.2em !important;
+}
+
+.user-email{
+    word-break: break-all;
+    text-decoration: underline;
+    color: blue;
+}
+
+.star-ratings-css {
+    display: inline-block;
+    line-height: 100%;
+    unicode-bidi: bidi-override;
+    color: #c5c5c5;
+    font-size: 18pt;
+    height: 18pt;
+    width: 100px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+    text-shadow: 0px 1px 0 #a2a2a2;
+}
+
+.star-ratings-css-top {
+     color: #5cad5f;
+     padding: 0;
+     position: absolute;
+     z-index: 1;
+     display: block;
+     top: 0;
+     left: 0;
+     overflow: hidden;
+ }
+.star-ratings-css-bottom {
+     padding: 0;
+     display: block;
+     z-index: 0;
+ }
+
+
+.skill-rate-1{width: 10%;}
+.skill-rate-2{width: 20%;}
+.skill-rate-3{width: 30%;}
+.skill-rate-4{width: 40%;}
+.skill-rate-5{width: 50%;}
+.skill-rate-6{width: 60%;}
+.skill-rate-7{width: 70%;}
+.skill-rate-8{width: 80%;}
+.skill-rate-9{width: 90%;}
+.skill-rate-10{width: 100%;}
+
+
+/*-----------SKILL INFORMATION ---------------*/
+
+.skills-container{
+   padding: 0 5pt;
+    padding-top: 20pt;
+}
+
+
+.elm-container{
+    margin-bottom: 10pt;
+}
+
+.elm-header{
+    padding: 3pt 0;
+    border: solid 1px black;
+    border-radius: 2pt;
+    text-align: center;
+    box-shadow: 1px 2px 6px #888888;
+}
+
+.elm-header>h2{
+    margin: 0;
+}
+
+.elm-header>h4{
+    margin: 0;
+}
+
+.elm-content{
+    padding: 10pt 10pt 0px 5pt;
+}
+
+.elm-justify{
+    text-align: justify;
+}
+
+.domain-header > h3{
+    margin: 0;
+}
+
+.domain-content{
+    padding-top: 3pt;
+}
+
+.domain-content > ul{
+    margin-top: 0;
+}
+
+.skill-description{
+    font-style: italic;
+}
+
+.flag-logo{
+    height: 16pt;
+    width: 25pt;
+}
+
+
+
+
+.container-without-border{
+    border: none !important;
+}
+
+.experience-container{
+    position: relative;
+    border-bottom: solid 1px #bdbaba;
+    margin-bottom: 15pt;
+}
+
+.experience-date{
+    position: absolute;
+    font-size: 11pt;
+    margin-top: 4pt;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.upercase{
+    text-transform: uppercase;
+}
+
+.experience-title{
+    margin-left: 18%;
+    margin-right: 20%;
+}
+
+.experience-title>h3{
+    margin: 0;
+}
+
+.experience-logo{
+    position: absolute;
+    top:0;
+    right: 0%;
+    width: 20%;
+    text-align: right;
+}
+
+.experience-logo>img{
+    max-width: 100%;
+    max-height: 35pt;
+}
+
+
+.experience-content{
+    padding-top: 10pt;
+}
+
+.experience-content > ul{
+    margin-top: 0;
+}
+
+
+.referee-container{
+    border-bottom: solid 1px #bdbaba;
+}
+
+.referee-info{
+    margin-bottom: 4pt;
+}
+
+.referee-name{
+    font-size: 15pt;
+}
+
+.referee-table{
+    width: 100%;
+    padding-left: 20pt;
+    padding-bottom: 5pt;
+}
+
+
+

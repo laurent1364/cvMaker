@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CV Maker - Education Edit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.min.css"
+          th:href="@{/webjars/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"
+            th:src="@{/webjars/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js}"></script>
+
+    <link href="../../static/css/spring-core.css"
+          th:href="@{/css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div class="container">
+
+    <h2>Education Form</h2>
+    <div>
+        <form class="form-horizontal" th:object="${education}" th:action="@{/education}" method="post">
+
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                <p th:text="#{form.hasErrors}">Error Message</p>
+            </div>
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{version}"/>
+            <input type="hidden" th:field="*{userDetails}"/>
+
+            <div class="form-group"  th:class="${#fields.hasErrors('school')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">School:</label>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control" th:field="*{school}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('school')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"  th:class="${#fields.hasErrors('location')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Location:</label>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control" th:field="*{location}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('location')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group"  th:class="${#fields.hasErrors('title')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Title:</label>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control" th:field="*{title}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('title')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" th:class="${#fields.hasErrors('schoolUrl')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">School Url:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{schoolUrl}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('schoolUrl')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" th:class="${#fields.hasErrors('startDate')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Start Date*:</label>
+                <div class="col-sm-10 input-group date" data-provide="datepicker">
+
+                    <input class="datepicker" data-date-format="dd/mm/yyyy" th:field="*{startDate}" th:errorclass="has-error" placeholder="03/10/2015" required="required"/>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('startDate')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" th:class="${#fields.hasErrors('endDate')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">End Date:</label>
+                <div class="col-sm-10 input-group date" data-provide="datepicker">
+
+                    <input class="datepicker" data-date-format="dd/mm/yyyy" th:field="*{endDate}" th:errorclass="has-error" placeholder="03/10/2015"/>
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('endDate')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" th:class="${#fields.hasErrors('description')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Description:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{description}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('description')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" th:class="${#fields.hasErrors('achievement1')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Achievement:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{achievement1}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('achievement1')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" th:class="${#fields.hasErrors('achievement2')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Achievement:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{achievement2}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('achievement2')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" th:class="${#fields.hasErrors('achievement3')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Achievement:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{achievement3}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('achievement3')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
